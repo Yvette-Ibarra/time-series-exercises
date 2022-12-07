@@ -47,3 +47,13 @@ def fillna(df):
     # fill in nulls
     df.fillna(0, inplace=True)
     return df
+
+def get_clean_ops(ops):
+
+    ops = datetime_type(ops,'Date')
+    ops = set_date_to_index(ops, "Date")
+    ops= add_date_column_string(ops,'day_name', string='%A')
+    ops= add_date_column_string(ops,'month_name', string='%B')
+    ops= add_date_column_string(ops,'year', string='%Y')
+    fillna(ops)
+    return ops
